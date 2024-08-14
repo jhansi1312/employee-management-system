@@ -5,36 +5,38 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const Employee = () => {
     const empid = useParams()
-    const [id,setId] = useState(0)
+    const [id,setId] = useState('')
     const [name,setName] = useState('')
     const [email,setEmail] =useState('')
-    const [mobileNo,setMobileNo] = useState(0)
+    const [mobileNo,setMobileNo] = useState('')
     const [designation,setDesignation] = useState('')
     const [gender,setGender]=useState('');
     const [course,setCourse] = useState('')
     const nav = useNavigate() 
-    // console.log(typeof(empid))   
+    console.log((empid.id))   
     useEffect(()=>{
         
-        // if(empid){employeeservices.getEmployeeById(empid)
-        //                             .then((res)=>(res.data))
-        //                             .then(data =>
-        //                             {
-        //                                 setId(data._id);
-        //                                 setName(data.name);
-        //                                 setEmail(data.email);
-        //                                 setMobileNo(data.mobileNo);
-        //                                 setDesignation(data.designation);
-        //                                 setGender(data.gender)
-        //                                 setCourse(data.course)
-        //                             }
-        //                             )
-        //          }
+        if(empid.id){employeeservices.getEmployeeById(empid.id)
+                                    .then((res)=>(res.data))
+                                    .then(data =>
+                                    {
+                                        console.log(data)
+                                        setId(data._id);
+                                        setName(data.name);
+                                        setEmail(data.email);
+                                        setMobileNo(data.MbileNo);
+                                        setDesignation(data.Designation);
+                                        setGender(data.Gender)
+                                        setCourse(data.course)
+                                    }
+                                    )
+                 }
     },[])
 
     function save(e){
-        const emp = {id,name,email,mobileNo,designation,gender,course}
         e.preventDefault()
+        // if(empid.id)employeeservices.editEmployee(emp)
+        const emp = {id,name,email,mobileNo,designation,gender,course}
         emp.id = id;emp.name=name;emp.email=email;emp.mobileNo=mobileNo;emp.designation=designation;emp.gender=gender;emp.course=course
         console.log((emp))
         // const employee = p.cloneDeep(emp);
@@ -54,19 +56,19 @@ const Employee = () => {
                 <tbody>
                 <tr>
                     <th><label>Id:</label></th>
-                    <td><input type='text' placeholder='Enter ID' onChange={(e) => setId(e.target.value)}></input></td>
+                    <td><input type='text' placeholder='Enter ID' value={id} onChange={(e) => setId(e.target.value)}></input></td>
                 </tr>
                 <tr>
                     <th><label>Name:</label></th>
-                    <td><input type='text' placeholder='Enter Name' onChange={(e) => setName(e.target.value)}></input></td>
+                    <td><input type='text' placeholder='Enter Name'value={name} onChange={(e) => setName(e.target.value)}></input></td>
                 </tr>
                 <tr>
                     <th><label>Email:</label></th>
-                    <td><input type='text' placeholder='Enter Email' onChange={(e) => setEmail(e.target.value)}></input></td>
+                    <td><input type='text' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)}></input></td>
                 </tr>
                 <tr>
                 <th><label>MobileNo:</label></th>
-                    <td><input type='text' placeholder='Enter Mobile No' onChange={(e) => setMobileNo(e.target.value)}></input></td>
+                    <td><input type='text' placeholder='Enter Mobile No' value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}></input></td>
                 </tr>
                 <tr>
                 <th><label>Designation:</label></th>
@@ -82,12 +84,14 @@ const Employee = () => {
                 <tr>
                 <th><label>Gender:</label></th>
                 <td>
-                    <input type="radio" id="Male" name="radioGroup" value="Male" onChange={(e) => setGender(e.target.value)}/>
+                    {/* <select value={gender} onChange={(e) => setGender(e.target.value)}> */}
+                    <input type="radio" id="Male" name="radioGroup" value={gender} onChange={(e) => setGender(e.target.value)}/>
                     <label htmlFor="option1">Male</label>
                     <br />
-                    <input type="radio" id="Female" name="radioGroup" value="Female" onChange={(e) => setGender(e.target.value)}/>
+                    <input type="radio" id="Female" name="radioGroup" value={gender} onChange={(e) => setGender(e.target.value)}/>
                     <label htmlFor="option2">Female</label>
                     {/* <Radio value="option3" name="radioGroup">Option 3</Radio> */}
+                    {/* </select> */}
                 </td>
                 </tr>
 
@@ -95,7 +99,7 @@ const Employee = () => {
                     <th><label>course:</label></th>
                         <td>
                         <div>
-                        <input type="checkbox" id="my-checkbox" name="my-checkbox" value="MCA" onChange={(e) => setCourse(e.target.value)} />
+                        <input type="checkbox" id="my-checkbox" name="my-checkbox" value={designation} onChange={(e) => setCourse(e.target.value)} />
                         <label type = 'text'>MCA</label>
                         </div>
                         <div>

@@ -24,10 +24,12 @@ const EmployeeList = () => {
         // e.preventDefault()
         // console.log(typeof(id))
         navigator(`/add-emp/${id}`)
+        // navigator(`/add-emp/${id}`)
     }
 
-    function deleteEmployee(){
-        
+    function deleteEmployee(id){
+        employeeservices.deleteEmployeeById(id)
+        navigator('/')
     }
 
     return (
@@ -72,8 +74,8 @@ const EmployeeList = () => {
                                 <td>{emp.course}</td>
                                 <td>
                                     {/* const id = {emp._id} */}
-                                    <button className= 'btn btn-info' onClick={() => editEmployee(emp-_id)}>Edit</button>
-                                    <button className='btn btn-danger' onClick={() => deleteEmployee()}>Delete</button>
+                                    <button className= 'btn btn-info' onClick={() => editEmployee(emp._id)}>Edit</button>
+                                    <button className='btn btn-danger' onClick={() => deleteEmployee(emp._id.id)}>Delete</button>
                                 </td>
                             </tr>
                         
