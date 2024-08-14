@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const EmployeeSchema = new mongoose.Schema({
     _id:{
-        type:Number,
+        type:String,
     },
     name : {
         type:String,
@@ -15,7 +15,7 @@ const EmployeeSchema = new mongoose.Schema({
         unique:true,
     },
     MobileNo:{
-        type:Number,
+        type:String,
         required:true,
         unique:true,
     },

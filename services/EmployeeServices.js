@@ -22,7 +22,7 @@ function handleCreateEmployee(body){
 function handleGetEmployeeById(id){
     // EmployeeSchema.
     return Employee.findById(id)
-    console.log(emp)
+    // console.log(emp)
 }
 
 function handleUpdateEmployee(body){

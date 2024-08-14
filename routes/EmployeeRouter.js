@@ -19,15 +19,17 @@ EmployeeRouter.post('/',async(req,res) => {
 })
 
 EmployeeRouter.get("/:employeeId",async (req,res) =>{
-    const id = req.params.employeeId
+    const id = (req.params.employeeId)
     console.log(id)
     const emp = await handleGetEmployeeById(id);
     if(!emp)return res.status(400).json("employee not found");
+    console.log(emp)
     res.send(emp);
 });
 
 EmployeeRouter.put('/:id',async(req,res) => {
     const id =req.params.id
+    console.log(id)
     const emp = await(Employee.findById(id))
     if(!emp)res.send("The Employee is not present to be updated")
     else{const employee = await handleUpdateEmployee(id,req.body)
